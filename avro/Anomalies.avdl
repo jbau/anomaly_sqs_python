@@ -1,0 +1,30 @@
+// Copied from Wavefront System version 26.22
+@namespace("wavefront.anomaly")
+protocol Anomalies {
+  record Stripe {
+    long startMs;
+    long endMs;
+    string model;
+    string imageLink;
+  }
+
+  record Anomaly {
+    string customer;
+    long startMs;
+    long endMs;
+    string queryHash;
+    string paramHash;
+    string chartHash;
+    string dashboardId;
+    int section;
+    int row;
+    int col;
+    string model = "N/A";
+    string imageLink = "N/A";
+    array<Stripe> originalStripes = [];
+    map<string> queryParams = {};
+    long updatedMs;
+  }
+
+  void reportAnomaly(Anomaly input);
+}

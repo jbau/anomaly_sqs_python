@@ -1,0 +1,89 @@
+{
+  "protocol" : "Anomalies",
+  "namespace" : "wavefront.anomaly",
+  "types" : [ {
+    "type" : "record",
+    "name" : "Stripe",
+    "fields" : [ {
+      "name" : "startMs",
+      "type" : "long"
+    }, {
+      "name" : "endMs",
+      "type" : "long"
+    }, {
+      "name" : "model",
+      "type" : "string"
+    }, {
+      "name" : "imageLink",
+      "type" : "string"
+    } ]
+  }, {
+    "type" : "record",
+    "name" : "Anomaly",
+    "fields" : [ {
+      "name" : "customer",
+      "type" : "string"
+    }, {
+      "name" : "startMs",
+      "type" : "long"
+    }, {
+      "name" : "endMs",
+      "type" : "long"
+    }, {
+      "name" : "queryHash",
+      "type" : "string"
+    }, {
+      "name" : "paramHash",
+      "type" : "string"
+    }, {
+      "name" : "chartHash",
+      "type" : "string"
+    }, {
+      "name" : "dashboardId",
+      "type" : "string"
+    }, {
+      "name" : "section",
+      "type" : "int"
+    }, {
+      "name" : "row",
+      "type" : "int"
+    }, {
+      "name" : "col",
+      "type" : "int"
+    }, {
+      "name" : "model",
+      "type" : "string",
+      "default" : "N/A"
+    }, {
+      "name" : "imageLink",
+      "type" : "string",
+      "default" : "N/A"
+    }, {
+      "name" : "originalStripes",
+      "type" : {
+        "type" : "array",
+        "items" : "Stripe"
+      },
+      "default" : [ ]
+    }, {
+      "name" : "queryParams",
+      "type" : {
+        "type" : "map",
+        "values" : "string"
+      },
+      "default" : { }
+    }, {
+      "name" : "updatedMs",
+      "type" : "long"
+    } ]
+  } ],
+  "messages" : {
+    "reportAnomaly" : {
+      "request" : [ {
+        "name" : "input",
+        "type" : "Anomaly"
+      } ],
+      "response" : "null"
+    }
+  }
+}
