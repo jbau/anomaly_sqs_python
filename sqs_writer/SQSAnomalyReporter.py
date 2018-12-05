@@ -12,8 +12,8 @@ PROTOCOL = protocol.parse(open(PROTOCOL_PATH).read())
 
 
 class SQSAnomalyReporter(object):
-    def __init__(self, queue_name, aws_access_key_id=None, aws_secret_access_key=None):
-        self.requestor = SQSRequestor(PROTOCOL, queue_name, aws_access_key_id, aws_secret_access_key)
+    def __init__(self, queue_name, aws_access_key_id=None, aws_secret_access_key=None, region_name=None):
+        self.requestor = SQSRequestor(PROTOCOL, queue_name, aws_access_key_id, aws_secret_access_key, region_name)
 
     def reportAnomaly(self, anomaly):
         self.requestor.request("reportAnomaly", {"input": vars(anomaly)})
