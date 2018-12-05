@@ -1,13 +1,12 @@
 """
 Plain python class representing an anomaly object
 """
-from typing import Dict
 
 
 class Anomaly(object):
-    def __init__(self, customer: str, start_ms: int, end_ms: int, query_hash: str, param_hash: str, chart_hash: str,
-                 dashboard_id: str, section: int, row: int, col: int, model: str = "N/A", image_link: str = "N/A",
-                 query_params: Dict[str, str] = {}):
+    def __init__(self, customer, start_ms, end_ms, query_hash, param_hash, chart_hash,
+                 dashboard_id, section, row, col, model = "N/A", image_link = "N/A",
+                 query_params = {}):
         self.customer = customer
         self.startMs = start_ms
         self.endMs = end_ms
