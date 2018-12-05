@@ -9,9 +9,10 @@ import boto3
 from avro.ipc import BaseRequestor
 
 from DummyTransceiver import DummyTransceiver
+from sqs_writer.NoHandshakeRequestor import NoHandshakeRequestor
 
 
-class SQSRequestor(BaseRequestor):
+class SQSRequestor(NoHandshakeRequestor):
     def __init__(self, proto, queue_name, aws_access_key_id=None, aws_secret_access_key=None):
         BaseRequestor.__init__(self, proto, DummyTransceiver())
         if aws_access_key_id is None or aws_secret_access_key is None:
