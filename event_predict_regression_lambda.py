@@ -121,8 +121,7 @@ def report(path):
                       param_hash=p[11][:-4],
                       chart_hash=q['_chartHash'], dashboard_id=c[3], section=int(p[3]), row=int(p[5]), col=int(p[7]), model=model_key,
                       image_link='https://s3-'+region_name+'.amazonaws.com/'+bucket + '/'+path,
-                      query_params=q['_queryParameters'],
-                      query=q['_queryList'])
+                      query_params=q['_queryList'])
     reporter = SQSAnomalyReporter(queue_name+c[1], region_name=region_name)
 
     reporter.reportAnomaly(anomaly)
