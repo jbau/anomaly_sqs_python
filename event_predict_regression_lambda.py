@@ -96,17 +96,24 @@ def predict(key):
 
         if anomaly:
             report(key)
-            with open(path+'_scores.txt', 'w') as f1:
-                for i in range(SLICE):
-                    print(result[i])
-                    f1.write('   %s ' % (result[i]))
-            f1.close()
-            dir = os.path.join('output',os.path.dirname(key))
+
+        with open(path+'_scores.txt', 'w') as f1:
+            for i in range(SLICE):
+                print(result[i])
+                f1.write('   %s ' % (result[i]))
+        f1.close()
+        dir = os.path.join('output',os.path.dirname(key))
+        try:
+            s3c.Bucket(bucket).create_bucket(dir)
+        except:
+            pass
+        try:
+            s3c.Bucket(bucket).upload_file(path+'_scores.txt', os.path.join('output',key+'_scores.txt'), ExtraArgs={'ContentType':'text/plain','ACL' : 'authenticated-read'})
+        finally:
             try:
-                s3c.Bucket(bucket).create_bucket(dir)
+                os.remove(path+'_scores.txt')
             except:
                 pass
-            s3c.Bucket(bucket).upload_file(path+'_scores.txt', os.path.join('output',key+'_scores.txt'), ExtraArgs={'ContentType':'text/plain','ACL' : 'authenticated-read'})
 
 def report(path):
     p = path.split("_")
@@ -117,11 +124,11 @@ def report(path):
     o = s3.get_object(Bucket=bucket, Key=path.replace('.png', '.params.json'))
 
     q = json.loads(o['Body'].read())
-    anomaly = Anomaly(customer=c[2], start_ms=long(p[8])*1000, end_ms=long(p[9])*1000, query_hash=q['_paramsHash'],
-                      param_hash=p[11][:-4],
+    anomaly = Anomaly(customer=c[2], start_ms=long(p[8])*1000, end_ms=long(p[9])*1000, query_hash=str(q['_queryList']),
+                      param_hash=q['_paramsHash'],
                       chart_hash=q['_chartHash'], dashboard_id=c[3], section=int(p[3]), row=int(p[5]), col=int(p[7]), model=model_key,
                       image_link='https://s3-'+region_name+'.amazonaws.com/'+bucket + '/'+path,
-                      query_params=q['_queryList'])
+                      query_params=q['_queryParameters'])
     reporter = SQSAnomalyReporter(queue_name+c[1], region_name=region_name)
 
     reporter.reportAnomaly(anomaly)
