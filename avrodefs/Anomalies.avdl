@@ -15,13 +15,13 @@ protocol Anomalies {
     string queryHash;
     string paramHash;
     string chartHash;
-    string chartLink;
     string dashboardId;
     int section;
     int row;
     int col;
     string model = "N/A";
     string imageLink = "N/A";
+    string chartLink = "N/A";
     array<Stripe> originalStripes = [];
     map<string> queryParams = {};
     long updatedMs;
