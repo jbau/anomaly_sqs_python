@@ -13,7 +13,7 @@ class Anomaly(object):
         self.endMs = end_ms
         self.queryHash = query_hash
         self.paramHash = param_hash
-        self.chart_link = chart_link
+        self.chartLink = chart_link
         self.chartHash = chart_hash
         self.dashboardId = dashboard_id
         self.section = section
