@@ -39,6 +39,9 @@
       "name" : "chartHash",
       "type" : "string"
     }, {
+      "name" : "chartLink",
+      "type" : "string"
+    }, {
       "name" : "dashboardId",
       "type" : "string"
     }, {

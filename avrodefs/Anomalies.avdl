@@ -15,6 +15,7 @@ protocol Anomalies {
     string queryHash;
     string paramHash;
     string chartHash;
+    string chartLink;
     string dashboardId;
     int section;
     int row;
