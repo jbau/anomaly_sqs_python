@@ -124,7 +124,7 @@ def report(path):
     o = s3.get_object(Bucket=bucket, Key=path.replace('.png', '.params.json'))
 
     q = json.loads(o['Body'].read())
-    anomaly = Anomaly(customer=c[2], start_ms=long(p[8])*1000, end_ms=long(p[9])*1000, query_hash=str(q['_queryList']),
+    anomaly = Anomaly(customer=c[2], start_ms=long(p[8])*1000, end_ms=long(p[9])*1000, query_hash=str([s.encode("utf-8") for s in q['_queryList']]),
                       param_hash=q['_paramsHash'],
                       chart_hash=q['_chartHash'], dashboard_id=c[3], section=int(p[3]), row=int(p[5]), col=int(p[7]), model=model_key,
                       image_link='https://s3-'+region_name+'.amazonaws.com/'+bucket + '/'+path,
