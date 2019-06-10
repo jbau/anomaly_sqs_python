@@ -7,7 +7,7 @@ import copy
 class Anomaly(object):
     def __init__(self, customer, start_ms, end_ms, query_hash, param_hash, chart_hash,
                  dashboard_id, section, row, col, model="N/A", image_link="N/A", chart_link="N/A",
-                 query_params={}):
+                 query_params={}, metrics_used=[], hosts_used=[]):
         self.customer = customer
         self.startMs = start_ms
         self.endMs = end_ms
@@ -24,3 +24,5 @@ class Anomaly(object):
         self.queryParams = copy.copy(query_params)
         self.updatedMs = 0  # placeholder values that can't be set
         self.originalStripes = []  # placeholder values that can't be set
+        self.metricsUsed = metrics_used
+        self.hostsUsed = hosts_used

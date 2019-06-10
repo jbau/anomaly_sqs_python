@@ -23,6 +23,8 @@ protocol Anomalies {
     string imageLink = "N/A";
     string chartLink = "N/A";
     array<Stripe> originalStripes = [];
+    array<string> metricsUsed = [];
+    array<string> hostsUsed = [];
     map<string> queryParams = {};
     long updatedMs;
   }

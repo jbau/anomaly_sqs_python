@@ -70,6 +70,20 @@
       },
       "default" : [ ]
     }, {
+      "name" : "metricsUsed",
+      "type" : {
+        "type" : "array",
+        "items" : "string"
+      },
+      "default" : [ ]
+    }, {
+      "name" : "hostsUsed",
+      "type" : {
+        "type" : "array",
+        "items" : "string"
+      },
+      "default" : [ ]
+    }, {
       "name" : "queryParams",
       "type" : {
         "type" : "map",
