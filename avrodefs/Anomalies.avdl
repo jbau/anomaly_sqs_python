@@ -1,4 +1,4 @@
-// Copied from Wavefront System version 26.22
+// Copied from Wavefront System version 36.22
 @namespace("wavefront.anomaly")
 protocol Anomalies {
   record Stripe {
